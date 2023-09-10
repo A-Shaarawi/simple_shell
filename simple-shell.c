@@ -1,7 +1,11 @@
 #include "shell.h"
+/**
+ * main - fucntion
+ * Return: 0
+ */
 int main(void)
 {
-char *buff = NULL, *p = "$ ";
+char *buff = NULL, *p = "($) ";
 size_t buffsize = 0;
 ssize_t bytes;
 pid_t wpid;
@@ -12,7 +16,7 @@ while (1 && !from_pipe)
 {
 if (isatty(STDIN_FILENO) == 0)
 from_pipe = true;
-write(STDOUT_FILENO, p, 2);
+write(STDOUT_FILENO, p, 4);
 bytes = getline(&buff, &buffsize, stdin);
 if (bytes == -1)
 {
