@@ -16,7 +16,7 @@ write(STDOUT_FILENO, p, 2);
 bytes = getline(&buff, &buffsize, stdin);
 if (bytes == -1)
 {
-perror("Error (getline)");
+perror("Exit");
 free(buff);
 exit(EXIT_FAILURE);
 }
