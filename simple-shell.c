@@ -5,22 +5,22 @@
  */
 int main(void)
 {
-char *buff = NULL, *p = "($) ";
+char *buff = NULL, *args[2];
 size_t buffsize = 0;
 ssize_t bytes;
 pid_t wpid;
 int wstatus;
-
-bool from_pipe = false;
-while (1 && !from_pipe)
+char prompt[] = "$ ";
+bool piping = false;
+while (1 && !piping)
 {
 if (isatty(STDIN_FILENO) == 0)
-from_pipe = true;
-write(STDOUT_FILENO, p, 4);
+	piping = true;
+write(STDOUT_FILENO, prompt, _strlen(prompt));
 bytes = getline(&buff, &buffsize, stdin);
 if (bytes == -1)
 {
-perror("Exit");
+perror("Error (getline)");
 free(buff);
 exit(EXIT_FAILURE);
 }
@@ -33,7 +33,13 @@ perror("Error (fork)");
 exit(EXIT_FAILURE);
 }
 if (wpid == 0)
-execvp(buff, &buff);
+{
+args[0] = buff;
+args[1] = NULL;
+execvp(args[0], args);
+perror("Error ");
+exit(EXIT_FAILURE);
+}
 if (waitpid(wpid, &wstatus, 0) == -1)
 {
 perror("Error (wait)");
