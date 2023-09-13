@@ -11,21 +11,9 @@
 #include <sys/wait.h>
 #include <string.h>
 
-/**
- * _strlen - funtion
- * @s: parameter
- * Return: number
- */
+void execute_command(const char *cmd);
+void display_prompt(void);
+void user_input(char *cmd, size_t size);
+void kel_print(const char *format);
 
-int _strlen(char *s)
-{
-	int count = 0;
-
-	while (*s != '\0')
-	{
-		count++;
-		s++;
-	}
-	return (count);
-}
 #endif

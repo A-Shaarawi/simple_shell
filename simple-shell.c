@@ -16,7 +16,7 @@ while (1 && !piping)
 {
 if (isatty(STDIN_FILENO) == 0)
 	piping = true;
-write(STDOUT_FILENO, prompt, _strlen(prompt));
+write(STDOUT_FILENO, prompt, strlen(prompt));
 bytes = getline(&buff, &buffsize, stdin);
 if (bytes == -1)
 {
