@@ -19,7 +19,6 @@ write(STDOUT_FILENO, prompt, _strlen(prompt));
 bytes = getline(&buff, &buffsize, stdin);
 if (bytes == -1)
 {
-perror("Exit");
 exit(EXIT_FAILURE);
 }
 if (buff[bytes - 1] == '\n')
