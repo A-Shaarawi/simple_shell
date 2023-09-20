@@ -29,4 +29,8 @@ int _strlen(char *s)
 	return (count);
 }
 
+void display_prompt(void);
+void user_input(char *cmd, size_t size);
+void execute_command(const char *cmd);
+
 #endif
