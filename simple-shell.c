@@ -14,9 +14,8 @@ char prompt[] = "$ ";
 bool piping = false;
 while (1 && !piping)
 {
-if (isatty(STDIN_FILENO) == 0)
-	piping = true;
-write(STDOUT_FILENO, prompt, strlen(prompt));
+	piping = (isatty(STDIN_FILENO) == 0);
+write(STDOUT_FILENO, prompt, _strlen(prompt));
 bytes = getline(&buff, &buffsize, stdin);
 if (bytes == -1)
 {
@@ -29,13 +28,12 @@ buff[bytes - 1] = '\0';
 wpid = fork();
 if (wpid == -1)
 {
-perror("Error (fork)");
+perror("Error ");
 exit(EXIT_FAILURE);
 }
 if (wpid == 0)
 {
-args[0] = buff;
-args[1] = NULL;
+args[0] = buff, args[1] = NULL;
 execvp(args[0], args);
 perror("Error ");
 exit(EXIT_FAILURE);
