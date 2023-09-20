@@ -37,7 +37,7 @@ void display_prompt(void)
 void execute_command(const char *cmd)
 {
 	pid_t my_pid = fork();
-	char *args[] = {const, NULL};
+	char *args[] = {cmd, NULL};
 
 	if (my_pid == -1)
 	{
