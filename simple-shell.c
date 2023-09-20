@@ -19,8 +19,7 @@ write(STDOUT_FILENO, prompt, _strlen(prompt));
 bytes = getline(&buff, &buffsize, stdin);
 if (bytes == -1)
 {
-perror("Error (getline)");
-free(buff);
+perror("Exit");
 exit(EXIT_FAILURE);
 }
 if (buff[bytes - 1] == '\n')
@@ -35,7 +34,7 @@ if (wpid == 0)
 {
 args[0] = buff, args[1] = NULL;
 execvp(args[0], args);
-perror("Error ");
+perror(args[0]);
 exit(EXIT_FAILURE);
 }
 if (waitpid(wpid, &wstatus, 0) == -1)
