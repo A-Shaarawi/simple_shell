@@ -10,7 +10,7 @@ size_t buffsize = 0;
 ssize_t bytes;
 pid_t wpid;
 int wstatus;
-char prompt[] = "$ ";
+char prompt[] = "# ";
 bool piping = false;
 while (1 && !piping)
 {
