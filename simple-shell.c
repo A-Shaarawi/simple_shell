@@ -10,12 +10,12 @@ size_t buffsize = 0;
 ssize_t bytes;
 pid_t wpid;
 int wstatus;
-char prompt[] = "# ";
+char prompt[] = "$ ";
 bool piping = false;
 while (1 && !piping)
 {
 	piping = (isatty(STDIN_FILENO) == 0);
-write(STDOUT_FILENO, prompt, strlen(prompt));
+write(STDOUT_FILENO, prompt, _strlen(prompt));
 bytes = getline(&buff, &buffsize, stdin);
 if (bytes == -1)
 {
